@@ -1,4 +1,4 @@
-# banerjee_project
+# Rohan Banerjee
 
 <a 
 href="https://github.com/rohanbanerjee">
