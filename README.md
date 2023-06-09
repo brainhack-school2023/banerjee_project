@@ -47,14 +47,55 @@ This dataset will be soon open-sourced to Openneuro for researchers to use.
 
 ## Tools
 
-
-
+* Git and Github --> Version control
+* Python --> For programming the automated segmented method
+* PyTorch --> Deep learning framework used for the method
+* [deepseg_sc](https://spinalcordtoolbox.com/user_section/command-line.html?highlight=deepseg#sct-deepseg-sc) --> Baseline from Spinal Cord Toolbox for comaprison
+* [ivadomed](https://github.com/ivadomed) --> Deep learning framework used as a mthod for comparison
+* [nnUNetv2](https://github.com/MIC-DKFZ/nnUNet) --> Deep learning framework used as a mthod for comparison
+* [Segment Anythong Model (SAM)](https://segment-anything.com/) --> Deep learning framework used as a mthod for comparison
 
 ## Methods overview
 
-## Deliverables
+The above mentioned sub-objectives will be achieved by using the following steps:
+
+* For SO1, send across a call for submission of spinal cord fMRI data across labs with data acquisition protocols and data arrangement using BIDS format. This data will be open-sourced.
+* For SO2, use the current SOTA algorithms for the spinal cord segmentation and set baselines to compare our results with. Post this step, train different 2D deep learning models with the fMRI data and run experiments in order to validate our results.
+* For SO3, once I have a confident method developed for the segmentation, we will use these segmentations to carry out different scientific procedures like motion correction and spinal cord normalisation which are generally carried out by clinicians if they have the segmentations to verify our contribution.
+* For SO4, I will package and integrate the model into SCT from where this method can be used by a single command on the command line. 
+
+<!-- 1. <b>ivadomed</b>
+
+For using the ivadomed framework, I used a 2D UNet model from the available architectures [here](https://ivadomed.org/tutorials/one_class_segmentation_2d_unet.html?highlight=2D%20U-Net).  -->
 
 ## Results 
+
+# 1. ivadomed
+* I trained a 2D UNet using the ivadoimed framework.
+* I trained separate models using the datasets and then ran some experiments to use the data together and run some experiments.
+   * <b>Experiment 1</b>: In this experiment, I trained a 2D UNet model using *only the Leipzig data* from scratch. Training from scratch here means that the weights of the deep learning model were randomly initialized.
+   * <b>Experiment 2</b>: In this experiment, I trained a 2D UNet model using *Leipzig data and the Geneva data* together from scratch. Training from scratch here means that the weights of the deep learning model were randomly initialized.
+   * <b>Experiment 3</b>L In this experiment, I trained a 2D UNet model using *only Geneva data* and *Geneva data with weights initialized from the only Leipzig data model*
+
+The violin plots below show the dice score distributions of the different experiments mentioned above.
+
+<p align="center">
+  <img src="images/exp_1_2.png" alt=""/>
+</p>
+
+<p align="center">
+  <img src="images/exp_3.png" alt=""/>
+</p>
+
+The overall results look like the below:
+
+<p align="center">
+  <img src="images/ivado_results.png" alt=""/>
+</p>
+
+
+
+
 
 ## Reproducibility
 
