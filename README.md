@@ -93,6 +93,29 @@ The overall results look like the below:
   <img src="images/ivado_results.png" alt=""/>
 </p>
 
+# 2. nnUNetv2
+* The nnUNet was trained for 1000 epochs using a 5-fold cross validation paradigm using the Leipzing and Geneva datasets.
+* The final results reported are using the ensemble of the five different models trained for the five-fold cross validation.
+* The final testing dice score is: <b>0.91 (±0.02)</b>
+
+Qualitative results look like the below:
+* The yellow masks show the ground truth and the red masks show the predictions
+
+
+# 3. SAM
+* The Segment Anything Model (SAM) is a really large segmentation model (a.k.a. Foundational model) which is trained on 11M images and 1B masks by Meta AI
+* “SAM has learned a general notion of what objects are, and it can generate masks for any object in any image or any video, even including objects and image types that it had not encountered during training.” - Meta AI claims.
+* Even though not true, this model does have a lot of information and can be easily fine-tuned for specific needs such as mine – Spinal Cord Segmentation.
+* Only 80 subjects used for now (curse of dimensionality – need more data)
+
+<p align="center">
+  <img src="images/SAM_result.png" alt=""/>
+</p>
+
+
+
+
+
 
 
 
