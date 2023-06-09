@@ -102,6 +102,12 @@ Qualitative results look like the below:
 * The yellow masks show the ground truth and the red masks show the predictions
 
 
+![alt-text](images/fMRI_sc_seg.gif){ width="800" height="600" style="display: block; margin: 0 auto" }
+
+It is also works well on images with ghosting artifacts
+![alt-text](images/ghosting_atrifact.gif)
+
+
 # 3. SAM
 * The Segment Anything Model (SAM) is a really large segmentation model (a.k.a. Foundational model) which is trained on 11M images and 1B masks by Meta AI
 * “SAM has learned a general notion of what objects are, and it can generate masks for any object in any image or any video, even including objects and image types that it had not encountered during training.” - Meta AI claims.
@@ -112,18 +118,42 @@ Qualitative results look like the below:
   <img src="images/SAM_result.png" alt=""/>
 </p>
 
-
-
-
-
-
-
-
+Overall results:
+<p align="center">
+  <img src="images/overall_results.png" alt=""/>
+</p>
 
 ## Reproducibility
 
+# 1. nnUNetv2
+The scrips folder contains a [pipline.md](/scripts/pipeline.md) which contains all the steps to reproduce the results received from the nnUNetv2 framework.
+
+# 2. SAM
+The code has been inspired by the MedSAM respository [here](https://github.com/bowang-lab/MedSAM)
+* The dataset which is in BIDS data format has to be converted into the the Medical Segmentation Decathlon dataset format using the [script](scripts/pre_MR-2.py).
+* After the dataset has been transformed, this [jupyter notebook](scripts/finetune_and_inference_tutorial_3D_dataset.ipynb) has to be used for the fine-tuning.
+
+I highly recommend checking the original repository for in-depth steps.
+
+(ivadomed framework development has been currently stalled and I have not mentioned the steps for the ivadomed results reproducibility steps therefore.)
+
 ## Conclusion
+
+* We now have a proof of concept for segmentation of spinal cord in EPI data.
+* We see an improvement in performance with increase in model size.
+* Specifically for SAM, I would say that 80 subjects is too less to see a considerable increase in performance but as my next step, I am using the fMRI data + spine generic data for the fine-tuning to overcome the curse of dimensionality problem and hope to see a significant increase in the performance.
 
 ## Acknowledgements
 
+I would like to thank Professor Eva Alonso Ortiz for her step-by-step guidance and feedback on the project and the presentation. I would also like to thank the TAs Jan Valošek and Andjela Dimitrijevic for their continuous support, help and evaluations during the course of the BrainHack School. I would also like to help the BrainHack School organisers for such a well designed course!
+
 ## References
+
+* Gorgolewski, K., Auer, T., Calhoun, V. et al. The brain imaging data structure, a format for organising and describing outputs of neuroimaging experiments. Sci Data 3, 160044 (2016). 
+* [ivadomed](https://ivadomed.org/index.html)
+* [nnUNetv2](https://github.com/MIC-DKFZ/nnUNet)
+* [Segment Anything Model](https://github.com/facebookresearch/segment-anything)
+* Gros C, De Leener B, Badji A, Maranzano J, Eden D, Dupont SM, Talbott J, Zhuoqing R, Liu Y, Granberg T, Ouellette R, Tachibana Y, Hori M, Kamiya K, Chougar L, Stawiarz L, Hillert J, BannierE, Kerbrat A, Edan G, Labauge P, Callot V, Pelletier J, Audoin B, Rasoi Andrianina H, Brisset JC, Valsasina P, Rocca MA, Filippi M, Bakshi R, Tauhid S, Prados F, Yiannakas M, Kearney H, Ciccarelli O, Smith S, Treaba CA, Mainero C, Lefeuvre J, Reich DS, Nair G, Auclair V, McLaren DG, Martin AR, Fehlings MG, Vahdat S, Khatibi A, Doyon J, Shepherd T, Charlson E, Narayanan S, Cohen-Adad J. Automatic segmentation of the spinal cord and intramedullary multiple sclerosis lesions with convolutional neural networks. Neuroimage. 2019 
+* De Leener B, Kadoury S, Cohen-Adad J. Robust, accurate and fast automatic segmentation of the spinal cord. Neuroimage. 2014 Sep;98:528i-36. doi: 10.1016/j.neuroimage.2014.04.051. PMID: 24780696, 2014
+* Benjamin De Leener, Simon Lévy, Sara M. Dupont, Vladimir SAFonov, Nikola Stikov, D. Louis Collins, Virginie Callot, Julien Cohen-Adad, SCT: Spinal Cord Toolbox, an open-source software for processing spinal cord MRI data, NeuroImage, Volume 145, Part A, Pages 24-43, ISSN 1053-8119, 2017
+* [MedSAM](https://github.com/bowang-lab/MedSAM)
